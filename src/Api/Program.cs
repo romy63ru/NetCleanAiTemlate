@@ -3,6 +3,8 @@ using Application.Services;
 using Infrastructure.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Mapster;
+using Api.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<OrderDbContext>(options =>
 	options.UseInMemoryDatabase("OrdersDb"));
 builder.Services.AddScoped<IOrderRepository, OrderEfRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+// Mapster configuration
+MapsterConfig.Register(TypeAdapterConfig.GlobalSettings);
 
 var app = builder.Build();
 

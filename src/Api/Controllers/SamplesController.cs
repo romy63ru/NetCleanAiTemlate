@@ -2,6 +2,7 @@ using Application.Common;
 using Application.Services;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Mapster;
 
 namespace Api.Controllers;
 
@@ -26,7 +27,7 @@ public class SamplesController : ControllerBase
         if (!result.IsSuccess)
             return Problem(result.Error, statusCode: result.Code == "validation" ? StatusCodes.Status400BadRequest : StatusCodes.Status500InternalServerError);
 
-        var dto = ToDto(result.Value!);
+        var dto = result.Value!.Adapt<SampleDto>();
         return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
     }
 
@@ -37,15 +38,13 @@ public class SamplesController : ControllerBase
         if (!result.IsSuccess)
             return Problem(result.Error, statusCode: result.Code == "not_found" ? StatusCodes.Status404NotFound : StatusCodes.Status500InternalServerError);
 
-        return Ok(ToDto(result.Value!));
+        return Ok(result.Value!.Adapt<SampleDto>());
     }
 
     [HttpGet]
     public async Task<IActionResult> List(CancellationToken ct)
     {
         var result = await _service.ListAsync(ct);
-        return Ok(result.Value!.Select(ToDto));
+        return Ok(result.Value!.Adapt<IEnumerable<SampleDto>>());
     }
-
-    private static SampleDto ToDto(SampleEntity e) => new(e.Id, e.Name, e.Description);
 }

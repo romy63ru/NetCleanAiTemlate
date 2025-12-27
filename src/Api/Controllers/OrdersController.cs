@@ -2,6 +2,7 @@ using Api.Contracts;
 using Application.Common;
 using Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Mapster;
 
 namespace Api.Controllers;
 
@@ -47,21 +48,14 @@ public sealed class OrdersController : ControllerBase
                 detail: "Item price cannot be negative");
         }
 
-        var inputs = request.Items.Select(i => new OrderItemInput(i.ProductId, i.Quantity, i.Price));
+        var inputs = request.Items.Adapt<IEnumerable<OrderItemInput>>();
 
         var result = await _service.CreateAsync(inputs, request.Confirm, ct);
 
         if (result.IsSuccess)
         {
             var order = result.Value!;
-            var response = new CreateOrderResponse
-            {
-                OrderId = order.Id.Value,
-                Status = (int)order.Status,
-                ItemsCount = order.Items.Count,
-                TotalPrice = order.TotalPrice,
-                CancellationReason = order.CancellationReason
-            };
+            var response = order.Adapt<CreateOrderResponse>();
 
             // Return 201 Created with a canonical location
             return Created($"/api/orders/{response.OrderId}", response);
