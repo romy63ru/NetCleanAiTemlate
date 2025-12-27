@@ -24,6 +24,11 @@ public class SampleServiceTests
             _store[entity.Id] = entity;
             return Task.CompletedTask;
         }
+        public Task UpdateAsync(SampleEntity entity, CancellationToken ct)
+        {
+            _store[entity.Id] = entity;
+            return Task.CompletedTask;
+        }
     }
 
     [Fact]

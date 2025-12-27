@@ -21,6 +21,11 @@ public class SamplesControllerTests
 
         public Task<Result<IReadOnlyList<SampleEntity>>> ListAsync(CancellationToken ct)
             => Task.FromResult(Result<IReadOnlyList<SampleEntity>>.Success(Array.Empty<SampleEntity>()));
+
+        public Task<Result<SampleEntity>> UpdateAsync(Guid id, string name, string? description, CancellationToken ct)
+            => string.IsNullOrWhiteSpace(name)
+                ? Task.FromResult(Result<SampleEntity>.Failure("Name is required", code: "validation"))
+                : Task.FromResult(Result<SampleEntity>.Success(SampleEntity.Create(id, name, description)));
     }
 
     [Fact]
