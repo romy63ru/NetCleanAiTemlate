@@ -84,6 +84,14 @@
 - Logging only in API and Infrastructure
 - Structured logs only
 
+## Mapping
+- Use Mapster for object-to-object mapping
+- Do NOT use AutoMapper
+- Mapping configuration must be explicit
+- No implicit or convention-based magic
+- Mapping lives in Application layer
+- Domain objects must not depend on mapping
+
 ## Testing
 - Domain: pure unit tests
 - Application: use-case tests
