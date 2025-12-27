@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Ui.Avalonia.ViewModels"
+             x:Class="Ui.Avalonia.Views.SampleEditorView"
+             x:DataType="vm:SampleEditorViewModel">
+  <StackPanel Margin="16" Spacing="8">
+    <TextBlock Text="Sample Editor" FontWeight="Bold" FontSize="18"/>
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBlock Text="Id" Width="80"/>
+      <TextBox Text="{Binding IdString}" Width="300" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBlock Text="Name" Width="80"/>
+      <TextBox Text="{Binding Name}" Width="300" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBlock Text="Description" Width="80"/>
+      <TextBox Text="{Binding Description}" Width="300" />
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,8,0,0">
+      <Button Content="Load" Command="{Binding Load}" Width="100"/>
+      <Button Content="Save" Command="{Binding Save}" Width="100"/>
+    </StackPanel>
+    <TextBlock Text="{Binding Status}" Foreground="Gray" />
+  </StackPanel>
+</UserControl>

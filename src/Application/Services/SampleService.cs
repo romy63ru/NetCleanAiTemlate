@@ -36,4 +36,18 @@ public class SampleService : ISampleService
         var list = await _repo.ListAsync(ct);
         return Result<IReadOnlyList<SampleEntity>>.Success(list);
     }
+
+    public async Task<Result<SampleEntity>> UpdateAsync(Guid id, string name, string? description, CancellationToken ct)
+    {
+        var existing = await _repo.GetByIdAsync(id, ct);
+        if (existing is null)
+            return Result<SampleEntity>.Failure("Not found", code: "not_found");
+
+        if (string.IsNullOrWhiteSpace(name))
+            return Result<SampleEntity>.Failure("Name is required", code: "validation");
+
+        var updated = SampleEntity.Create(id, name, description);
+        await _repo.UpdateAsync(updated, ct);
+        return Result<SampleEntity>.Success(updated);
+    }
 }

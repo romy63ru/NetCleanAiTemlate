@@ -2,8 +2,9 @@ using Application.Abstractions;
 using Domain;
 using System.Collections.Concurrent;
 
-namespace Infrastructure.Repositories;
+namespace Ui.Avalonia.Services;
 
+// UI-local repository to avoid Infrastructure dependency
 public class InMemorySampleRepository : ISampleRepository
 {
     private readonly ConcurrentDictionary<Guid, SampleEntity> _store = new();
