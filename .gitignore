@@ -1,0 +1,75 @@
+# Build outputs
+bin/
+obj/
+[Bb]uild/
+[Bb]in/Debug/
+[Bb]in/Release/
+[Oo]bj/Debug/
+[Oo]bj/Release/
+artifacts/
+
+# VS / tooling
+.vs/
+.vscode/*.cache
+.vscode/*.log
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Packages
+**/packages/
+*.nupkg
+*.snupkg
+
+# Logs / coverage
+*.log
+*.tlog
+TestResult*/
+*.trx
+*.coverage
+*.coveragexml
+.coverage
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# Azure / publish
+*.pubxml
+*.pubxml.user
+
+# Misc
+*.db
+*.pdb
+*.opendb
+*.VC.db
+*.DS_Store
+Thumbs.db
+
+# Generated
+*.generated.cs
+*.g.cs
+*.g.i.cs
+
+# Avalonia designer cache
+.axaml.cs~
+.axaml~
+
+# Tooling state
+.project.lock.json
+project.fragment.lock.json
+
+# node / web builds (if present)
+node_modules/
+dist/
+.out/
