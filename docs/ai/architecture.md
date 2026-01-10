@@ -25,6 +25,7 @@
 - Logging/metrics/tracing via decorators or pipeline behaviors registered in Application/API.
 - Validation pipeline runs before handlers; no controller/handler logic without validation.
 - Authentication/authorization at API; propagate user context into Application as needed.
+- Use an Anti-Corruption Layer (ACL) for external systems: define ports in Application, implement adapters in Infrastructure that translate to/from domain language and shield the domain from external models, errors, and contracts.
 
 ## Architecture rules
 
