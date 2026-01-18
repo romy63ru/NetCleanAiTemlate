@@ -1,0 +1,11 @@
+{
+  "AI Generate Entity": {
+    "prefix": "aigen",
+    "body": [
+      "Use conventions from docs/ai/conventions.md",
+      "Use the entity specification from docs/ai/entities/${1:Entity}.md",
+      "",
+      "Generate the full vertical slice for ${1:Entity}."
+    ]
+  }
+}
